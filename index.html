@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Vue Finder</title>
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar  navbar-dark bg-success mb-3">
+            <div class="container">
+                <a href="#" class="navbar-brand">GitHub Finder</a>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="card card-body">
+                <h1>Pesquisar Usuário</h1>
+                <p class="lead">Digite um nome para encontrar um usuário e seus repositórios</p>
+                <input type="text"  v-on:keyup.enter="apiSearch(search)" class="form-control " v-model="search" id="search" required>
+            </div>
+        </div>
+        <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" v-bind:src="avatar" alt="Card image cap">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Repositórios: <span class="badge badge-success float-right">{{ repositories}}</span></li>
+                        <li class="list-group-item">Seguidores: <span class="badge badge-primary float-right"> {{followers}}</span></li>
+                        <li class="list-group-item">Seguindo:<span class="badge badge-info float-right">{{following}}</span></li>
+                    </ul>
+                    <div class="card-body">
+                    <a href="${
+                      user.html_url
+                    }" target="_blank" class="btn btn-warning btn-block">Ver Perfil</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div id="repos"></div>
+            </div>
+          </div>
+          <div class="card card-body mb-2">
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="${repo.html_url}" target="_blank">${
+      repo.name
+    }</a>
+                </div>
+                <div class="col-md-6 float-right">
+                    <span class="badge badge-primary">Stars: ${
+                      repo.stargazers_count
+                    }</span>
+                    <span class="badge badge-secondary">Watch: ${
+                      repo.watchers_count
+                    }</span>
+                    <span class="badge badge-success">Forks: ${
+                      repo.forks_count
+                    }</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
